@@ -1,10 +1,10 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
-import { Canvas, ThreeEvent, useFrame, useLoader } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import React, { Suspense, useRef, useState, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "/scene.glb");
+  const gltf = useLoader(GLTFLoader, "./scene.glb");
   const mesh = useRef<THREE.Mesh>(null!);
 
   useFrame((state, delta) => {
@@ -68,7 +68,7 @@ function App() {
 
   const renderBuyOrSell = () => {
     if (buyOrSell) {
-      if (buyOrSell == "BUY") {
+      if (buyOrSell === "BUY") {
         return (
           <>
             <h3 style={{ color: "green" }}>BUY/HOLD</h3>
