@@ -127,8 +127,23 @@ function App() {
           TURN {audioPlaying ? "OFF" : "ON"} MUSIC
         </Button>
       </div>
-      <div style={{ minHeight: "500px", background: "transparent" }}>
-        <Canvas style={{ minHeight: "450px", minWidth: "300px" }}>
+      <div
+        style={{
+          minHeight: "500px",
+          minWidth: "300px",
+          width: "100vw",
+          maxWidth: "500px",
+          background: "transparent",
+        }}
+      >
+        <Canvas
+          style={{
+            minHeight: "450px",
+            minWidth: "300px",
+            width: "100%",
+            maxWidth: "500px",
+          }}
+        >
           <Suspense fallback={null}>
             <directionalLight position={[0, 5, 10]} />
             <Model />
