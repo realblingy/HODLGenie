@@ -4,6 +4,10 @@ import React, { Suspense, useRef, useState, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Model = () => {
+  useEffect(() => {
+    require("three/examples/jsm/loaders/GLTFLoader");
+  }, []);
+
   const gltf = useLoader(GLTFLoader, "./scene.glb");
   const mesh = useRef<THREE.Mesh>(null!);
 
@@ -124,7 +128,7 @@ function App() {
         </Button>
       </div>
       <div style={{ minHeight: "500px", background: "transparent" }}>
-        <Canvas style={{ minHeight: "450px", width: "500px" }}>
+        <Canvas style={{ minHeight: "450px", minWidth: "300px" }}>
           <Suspense fallback={null}>
             <directionalLight position={[0, 5, 10]} />
             <Model />
