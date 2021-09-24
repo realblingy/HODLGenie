@@ -91,7 +91,7 @@ function App() {
       if (buyOrSell === "BUY") {
         return (
           <>
-            <h3 style={{ color: "green" }}>BUY/HOLD</h3>
+            <h3 style={{ color: "green", marginBottom: "0.5rem" }}>BUY/HOLD</h3>
             <h5 style={{ color: "green", marginTop: "0" }}>
               MACD: {MacDIndicator}
             </h5>
@@ -203,7 +203,19 @@ function App() {
             PREDICT
           </Button>
         )}
-        {renderBuyOrSell()}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "70px",
+            maxHeight: "70px",
+            flexDirection: "column",
+            marginTop: "12px",
+          }}
+        >
+          {renderBuyOrSell()}
+        </div>
         <footer style={{ marginTop: "6rem", fontSize: "0.7em" }}>
           DISCLAIMER: THIS IS NOT FINANCIAL ADVICE AND IS FOR ENTERTAINMENT
           PURPOSES ONLY!
