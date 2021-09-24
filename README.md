@@ -3,4 +3,6 @@ Funny web app that advises people to either buy, hold or sell stocks using Alpha
 
 Made with TypeScript and Create React App. 
 
+Check out the web app here: https://agitated-kalam-ca2112.netlify.app/
+
 (NOTE: THIS WAS MADE FOR ENTERTAINMENT PURPOSES ONLY. PLEASE DO NOT USE THIS FOR FINANCIAL ADVICE)
