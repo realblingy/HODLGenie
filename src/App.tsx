@@ -27,8 +27,8 @@ const Model = () => {
 const LoadingScreen = () => (
   <div
     style={{
-      width: "100%",
-      height: "100%",
+      width: "100vh",
+      height: "100vw",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -216,7 +216,7 @@ function App() {
         >
           {renderBuyOrSell()}
         </div>
-        <footer style={{ marginTop: "6rem", fontSize: "0.7em" }}>
+        <footer style={{ marginTop: "1rem", fontSize: "0.7em" }}>
           DISCLAIMER: THIS IS NOT FINANCIAL ADVICE AND IS FOR ENTERTAINMENT
           PURPOSES ONLY!
         </footer>
