@@ -4,7 +4,7 @@ import React, { Suspense, useRef, useState, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Model = () => {
-  const gltf = useLoader(GLTFLoader, "/scene.gltf");
+  const gltf = useLoader(GLTFLoader, "/scene.glb");
   const mesh = useRef<THREE.Mesh>(null!);
 
   useFrame((state, delta) => {
