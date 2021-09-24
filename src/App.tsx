@@ -24,6 +24,22 @@ const Model = () => {
   );
 };
 
+const LoadingScreen = () => (
+  <div
+    style={{
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
+    }}
+  >
+    <h1>Loading assets...</h1>
+    <CircularProgress style={{ color: "white " }} />
+  </div>
+);
+
 function App() {
   const [audio] = useState(new Audio("/Off The Grid.mp3"));
   const [audioPlaying, setAudioPlaying] = useState(true);
@@ -111,88 +127,88 @@ function App() {
         padding: "0px 12px",
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          marginTop: "1rem",
-        }}
-      >
-        <span style={{ marginRight: "1rem" }}>
-          Song: Off the Grid - Kanye West
-        </span>
-        <Button onClick={handleMusicClick} variant="contained">
-          TURN {audioPlaying ? "OFF" : "ON"} MUSIC
-        </Button>
-      </div>
-      <div
-        style={{
-          minHeight: "500px",
-          minWidth: "300px",
-          width: "100vw",
-          maxWidth: "500px",
-          background: "transparent",
-        }}
-      >
-        <Canvas
+      <Suspense fallback={<LoadingScreen />}>
+        <div
           style={{
-            minHeight: "450px",
-            minWidth: "300px",
             width: "100%",
-            maxWidth: "500px",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            marginTop: "1rem",
           }}
         >
-          <Suspense fallback={null}>
+          <span style={{ marginRight: "1rem" }}>
+            Song: Off the Grid - Kanye West
+          </span>
+          <Button onClick={handleMusicClick} variant="contained">
+            TURN {audioPlaying ? "OFF" : "ON"} MUSIC
+          </Button>
+        </div>
+        <div
+          style={{
+            minHeight: "500px",
+            minWidth: "300px",
+            width: "100vw",
+            maxWidth: "500px",
+            background: "transparent",
+          }}
+        >
+          <Canvas
+            style={{
+              minHeight: "450px",
+              minWidth: "300px",
+              width: "100%",
+              maxWidth: "500px",
+            }}
+          >
             <directionalLight position={[0, 5, 10]} />
             <Model />
-          </Suspense>
-        </Canvas>
-      </div>
-      <h1>The HODL genie</h1>
-      <p>
-        Enter a stock symbol and I will tell you whether to buy/hold or sell.
-      </p>
-      <TextField
-        style={{ backgroundColor: "gray", color: "black" }}
-        variant="filled"
-        label="STOCK SYMBOL"
-        value={symbol}
-        disabled={loading}
-        onChange={(e) => {
-          setSymbol(e.target.value);
-          if (buyOrSell) {
-            setBuyOrSell(null);
-          }
-        }}
-        InputProps={{
-          style: {
-            color: "black",
-            backgroundColor: "white",
-          },
-        }}
-      />
-      {loading ? (
-        <CircularProgress style={{ marginTop: "1rem", color: "white" }} />
-      ) : (
-        <Button
-          onClick={fetchPrediction}
-          style={{
-            marginTop: "1rem",
-            backgroundColor: "#006EE6",
-            color: "white",
+          </Canvas>
+        </div>
+        <h1>The HODL genie</h1>
+        <p>
+          Enter a stock symbol and I will tell you whether to buy/hold or sell.
+        </p>
+        <TextField
+          style={{ backgroundColor: "gray", color: "black" }}
+          variant="filled"
+          label="STOCK SYMBOL"
+          value={symbol}
+          disabled={loading}
+          onChange={(e) => {
+            setSymbol(e.target.value);
+            if (buyOrSell) {
+              setBuyOrSell(null);
+            }
           }}
-          variant="contained"
-        >
-          PREDICT
-        </Button>
-      )}
-      {renderBuyOrSell()}
-      <footer style={{ marginTop: "6rem", fontSize: "0.7em" }}>
-        DISCLAIMER: THIS IS NOT FINANCIAL ADVICE AND IS FOR ENTERTAINMENT
-        PURPOSES ONLY!
-      </footer>
+          InputProps={{
+            style: {
+              color: "black",
+              backgroundColor: "white",
+            },
+          }}
+        />
+        {loading ? (
+          <CircularProgress style={{ marginTop: "1rem", color: "white" }} />
+        ) : (
+          <Button
+            onClick={fetchPrediction}
+            style={{
+              marginTop: "1rem",
+              backgroundColor: "#006EE6",
+              color: "white",
+            }}
+            variant="contained"
+          >
+            PREDICT
+          </Button>
+        )}
+        {renderBuyOrSell()}
+        <footer style={{ marginTop: "6rem", fontSize: "0.7em" }}>
+          DISCLAIMER: THIS IS NOT FINANCIAL ADVICE AND IS FOR ENTERTAINMENT
+          PURPOSES ONLY!
+        </footer>
+      </Suspense>
     </div>
   );
 }
