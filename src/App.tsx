@@ -42,7 +42,7 @@ const LoadingScreen = () => (
 
 function App() {
   const [audio] = useState(new Audio("/Off The Grid.mp3"));
-  const [audioPlaying, setAudioPlaying] = useState(true);
+  const [audioPlaying, setAudioPlaying] = useState(false);
   const [symbol, setSymbol] = useState("TSLA");
   const [loading, setLoading] = useState(false);
   const [buyOrSell, setBuyOrSell] = useState<String | null>(null);
